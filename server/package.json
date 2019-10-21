@@ -1,0 +1,29 @@
+{
+  "name": "abbywork",
+  "version": "1.0.0",
+  "description": "Upload image and store it in mongo db.",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "dev": "nodemon app.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NachikethRamesh/AbbyWork.git"
+  },
+  "author": "Nachiketh Ramesh",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NachikethRamesh/AbbyWork/issues"
+  },
+  "homepage": "https://github.com/NachikethRamesh/AbbyWork#readme",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "monk": "^7.1.1",
+    "morgan": "^1.9.1",
+    "nodemon": "^1.19.4"
+  }
+}
