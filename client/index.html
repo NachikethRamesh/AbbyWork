@@ -5,13 +5,51 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/skeleton/2.0.4/skeleton.min.css">
+    <link rel="stylesheet" href="styles.css">
     <title>Abby Work</title>
 </head>
 
+
 <body>
+    <main>
 
+        <body id="welcome message" class="welcomepage_message_body">
+            <p>
+                <h4>
+                    Upload Images and Enter Image Details
+                </h4>
+            </p>
+        </body>
 
-    <script scr='/client/client.js'></script>
+        <form id="uploadImage" class="imageClass">
+            <h3 style="text-align: center; font-family: Impact">Upload Image</h3>
+            <img id="display" class="box" />
+            <h1></h1>
+            <input type="file" accept="image/*" name="image" id="fileUpload" onchange="loadFile(event)"></input>
+        </form>
+
+        <form id="imageDetails" class="detailsClass">
+            <h3 style="text-align: center; font-family: Impact">Enter Image Details</h3>
+            <label for="imageName">Image Name</label>
+            <input id="imageName" type="text" style="box-sizing: border-box; width: 37em; height: 3em;">
+            <label for="imageDescr">Image Description</label>
+            <input id="imageDescr" type="text" style="box-sizing: border-box; width: 37em; height: 3em">
+            <label for="resolution">Image Resolution</label>
+            <input id="resolution" type="text" style="box-sizing: border-box; width: 5em; height: 3em">
+            <label for="width">Image Width</label>
+            <input id="width" type="text" style="box-sizing: border-box; width: 5em; height: 3em">
+            <label for="height">Image Height</label>
+            <input id="height" type="text" style="box-sizing: border-box; width: 5em; height: 3em">
+            <h5></h5>
+            <button id="submit-button" type="button" class="button-primary" style="font-family:roboto;">Submit</button>
+            <h5></h5>
+        </form>
+
+        <div id="message"></div>
+
+        <script src='client.js'> </script>
+    </main>
 </body>
 
 </html>
