@@ -17,8 +17,9 @@ app.use(cors());
 //Body parser parses the data received from client
 app.use(bodyParser.json());
 
+
 // Connection URL - put env variable
-const url = '';
+const url = 'mongodb+srv://AbbyWork:Abbytao123@pagecluster-v39xp.mongodb.net/AbbyWork?retryWrites=true&w=majority';
 
 app.get('/', (req, res) => {
     res.json({
@@ -43,35 +44,35 @@ app.post('/uploadImage', (req, res) => {
         imgByteData: imageByteData
     };
 
-    if (pushDataToDB(url, dataObject)) {
-        res.status(200);
-        res.end(JSON.stringify({
-            respMessage: "posted",
-        }));
-    } else {
-        res.status(400);
-        res.end(JSON.stringify({
-            respMessage: "error",
-        }));
-    }
+    const db = monk(url);
 
+    db.then(() => {
+            const imageDataCollection = db.get('imageData');
+            imageDataCollection.insert(dataObject)
+                .then(() => {
+                    db.close();
+                    res.status(200);
+                    res.end(JSON.stringify({
+                        respMessage: "posted",
+                    }));
+                })
+                .catch(() => {
+                    db.close();
+                    res.status(400);
+                    res.end(JSON.stringify({
+                        respMessage: "error",
+                    }));
+                });
+        })
+        .catch(() => {
+            res.status(400);
+            res.end(JSON.stringify({
+                respMessage: "error",
+            }));
+        });
 });
 
-async function pushDataToDB(mongoURL, dataObject) {
-    try {
-        const db = await monk(url);
-
-        const imageDataCollection = await db.get('imageData');
-
-        await imageDataCollection.insert(dataObject);
-
-        await db.close();
-
-        return true;
-
-    } catch (err) {
-        await db.close();
-        console.log(err);
-        return false;
-    }
-}
+const port = 5004;
+app.listen(port, () => {
+    console.log(`listening on ${port}`);
+});
